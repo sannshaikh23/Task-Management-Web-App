@@ -38,7 +38,6 @@ This project is a full-stack web application implementing user authentication an
 - Python 3.10+
 - Node.js and npm/yarn
 - PostgreSQL database
-- Git
 
 ### Backend Setup
 
@@ -46,129 +45,130 @@ This project is a full-stack web application implementing user authentication an
 
    ```bash
    cd backend
-Create and activate a Python virtual environment:
+   ```
 
+   
+### Create and activate a Python virtual environment:
+
+```bash
 python -m venv venv
 source venv/bin/activate   # On Windows use: venv\Scripts\activate
+pip install -r requirements.txt   #Install backend dependencies
+```
 
 
-Install backend dependencies:
+### Setup PostgreSQL database with the following credentials (adjust settings.py if needed):
 
-pip install -r requirements.txt
+- DB Name: yourdbname
 
+- User: yourusername
 
-Setup PostgreSQL database with the following credentials (adjust settings.py if needed):
+- Password: yourpassword
 
-DB Name: mydb
+- Host: localhost
 
-User: user2
+- Port: 5432
 
-Password: httpurls
-
-Host: localhost
-
-Port: 5432
-
-Apply migrations:
-
+**Apply migrations:**
+```bash
 python manage.py migrate
+```
 
+**Run the backend server:**
 
-Run the backend server:
-
+```bash
 python manage.py runserver
+```
 
-Frontend Setup
+### Frontend Setup
 
 Navigate to the frontend folder:
-
+```bash
 cd frontend
+```
 
+**Install frontend dependencies:**
 
-Install frontend dependencies:
-
+```bash
 npm install
 # or
 yarn install
+```
 
+**Run the React development server:**
 
-Run the React development server:
-
+```bash
 npm start
 # or
 yarn start
-
+```
 
 The frontend will start on http://localhost:3000 and the backend on http://127.0.0.1:8000.
 
-API Endpoints
-Endpoint	Method	Description	Auth Required
-/api/register/	POST	Register a new user	No
-/api/token/	POST	Obtain JWT token (login)	No
-/api/token/refresh/	POST	Refresh JWT token	No
-/api/profile/	GET	Get logged-in user profile	Yes
-/api/tasks/	GET	Get list of user tasks	Yes
-/api/tasks/	POST	Create a new task	Yes
-/api/tasks/<id>/	PUT	Update a task	Yes
-/api/tasks/<id>/	DELETE	Delete a task	Yes
-Frontend Routes
-Route	Component	Description
-/register	Register Page	User signup form
-/login	Login Page	User login form
-/dashboard	Dashboard	User profile & task manager
-How to Use
+**API Endpoints**
 
-Register a new account on /register.
+| Endpoint             | Method | Description                   | Auth Required |
+|----------------------|--------|-------------------------------|----------------|
+| /api/register/       | POST   | Register a new user           | No             |
+| /api/token/          | POST   | Obtain JWT token (login)      | No             |
+| /api/token/refresh/  | POST   | Refresh JWT token             | No             |
+| /api/profile/        | GET    | Get logged-in user profile    | Yes            |
+| /api/tasks/          | GET    | Get list of user tasks        | Yes            |
+| /api/tasks/          | POST   | Create a new task             | Yes            |
+| /api/tasks/<id>/     | PUT    | Update a task                 | Yes            |
+| /api/tasks/<id>/     | DELETE | Delete a task                 | Yes            |
 
-Login with your credentials on /login.
 
-Access the dashboard to view your profile and manage tasks.
 
-Create, update, delete tasks. Tasks marked completed will appear visually distinct.
 
-Logout to clear session.
+**Frontend Routes**
+| Route        | Component      | Description                     |
+|--------------|----------------|---------------------------------|
+| /register    | Register Page  | User signup form                |
+| /login       | Login Page     | User login form                 |
+| /dashboard   | Dashboard      | User profile & task manager     |
 
-Security & Scalability Notes
 
-Passwords are securely hashed using Django's built-in hashing system.
+### How to Use
 
-JWT tokens are used for stateless authentication.
+1. Register a new account on /register. 
+2. Login with your credentials on /login.
 
-CORS is configured to allow frontend requests from localhost:3000.
+3. Access the dashboard to view your profile and manage tasks.
 
-API endpoints are protected with JWT authentication middleware.
+4. Create, update, delete tasks. Tasks marked completed will appear visually distinct.
 
-To scale for production:
+5. Logout to clear session.
 
-Use HTTPS with secure cookies and proper token storage.
+### Security & Scalability Notes
 
-Deploy backend behind Gunicorn + Nginx or similar.
+- Passwords are securely hashed using Django's built-in hashing system.
 
-Use environment variables for secrets and credentials.
+- JWT tokens are used for stateless authentication.
 
-Implement rate limiting and monitoring.
+- CORS is configured to allow frontend requests from localhost:3000.
 
-Use managed cloud PostgreSQL for reliability.
+- API endpoints are protected with JWT authentication middleware.
 
-Frontend and backend can be deployed on separate domains or CDNs.
 
-Consider refresh token rotation and token revocation strategies.
 
-Postman Collection
+### Postman Collection
 
 A Postman collection (postman_collection.json) is provided to test all backend API endpoints with ready-made requests including registration, login, profile fetching, and task CRUD operations.
 
-Project Structure
+### Project Structure
+
+```bash
 root/
 ├── backend/
-│   ├── backend/        # Django project
-│   ├── app/            # Django app with models, views, serializers
+│   ├── backend/          # Django project config
+│   ├── app/              # Django app with models, views, serializers
 │   ├── manage.py
 │   └── requirements.txt
 ├── frontend/
-│   ├── src/
+│   ├── src/              # React source code
 │   ├── public/
 │   ├── package.json
 │   └── ...
-└── README.md           # This file
-
+└── README.md             # Project documentation
+```
