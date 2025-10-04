@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+.env
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+*.db
+
+# Virtualenv
+.web/
+venv/
+env/
+
+# Django specific
+*.migrations/
+local_settings.py
+db.sqlite3
+
+# PostgreSQL settings if applicable
+*.pgsql
+# React
+node_modules/
+build/
+.env
